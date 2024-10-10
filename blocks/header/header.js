@@ -124,8 +124,10 @@ export default async function decorate(block) {
       .find((row) => row.startsWith("adaptToMemberData="))
       ?.split("=")[1];
   const membershipData = membershipDataString ? JSON.parse(membershipDataString) : null;
+  const signOut = nav.querySelector('#sign-out');
+  const login = nav.querySelector('#login');
   if(membershipData?.level) {
-    const signOut = nav.querySelector('#sign-out');
+    login.style.display = 'none';
     signOut.addEventListener('click', (el) => {
       document.cookie = "adaptToMemberData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = "adaptToVerification=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -137,7 +139,6 @@ export default async function decorate(block) {
     memberLevel.textContent = membershipData?.level;
     signOut.parentElement.insertBefore(memberLevel, signOut);
   } else {
-    const signOut = nav.querySelector('#sign-out');
     signOut.style.display = 'none';
   }
   const navWrapper = document.createElement('div');
