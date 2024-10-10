@@ -125,9 +125,9 @@ export default async function decorate(block) {
       ?.split("=")[1];
   const membershipData = membershipDataString ? JSON.parse(membershipDataString) : null;
   const signOut = nav.querySelector('#sign-out');
-  const login = nav.querySelector('#login');
+  const signIn = nav.querySelector('#sign-in');
   if(membershipData?.level) {
-    login.style.display = 'none';
+    signIn.style.display = 'none';
     signOut.addEventListener('click', (el) => {
       document.cookie = "adaptToMemberData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = "adaptToVerification=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -140,6 +140,10 @@ export default async function decorate(block) {
     signOut.parentElement.insertBefore(memberLevel, signOut);
   } else {
     signOut.style.display = 'none';
+    const signInAnchor = signIn.querySelector('a');
+    const signInUrl = new URL(signInAnchor.href);
+    signInUrl.searchParams.set('redirect', window.location.href);
+    signInAnchor.href = signInUrl.href;
   }
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';

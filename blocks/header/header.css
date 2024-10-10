@@ -271,14 +271,14 @@ header nav .section:last-child {
 }
 
 header nav #sign-out,
-header nav #login {
+header nav #sign-in {
   font-weight: normal;
   font-family: var(--body-font-family);
   font-size: 18px;
 }
 
 header nav #sign-out:hover,
-header nav #login:hover {
+header nav #sign-in:hover {
   cursor:pointer;
   text-decoration: underline;
 }
