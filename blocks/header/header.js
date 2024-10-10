@@ -132,6 +132,10 @@ export default async function decorate(block) {
       el.currentTarget.remove();
       location.pathname = "/";
     });
+    const memberLevel = document.createElement('p');
+    memberLevel.classList.add('member-level');
+    memberLevel.textContent = membershipData?.level;
+    signOut.parentElement.insertBefore(memberLevel, signOut);
   } else {
     const signOut = nav.querySelector('#sign-out');
     signOut.style.display = 'none';

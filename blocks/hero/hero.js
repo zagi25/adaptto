@@ -9,7 +9,7 @@ export default async function decorate(block) {
         .find((row) => row.startsWith("adaptToMemberData="))
         ?.split("=")[1];
     const membershipData = membershipDataString ? JSON.parse(membershipDataString) : null;
-    if(membershipData.userName){
+    if(membershipData?.userName){
         const h1Elem = block.querySelector("h1");
         const newNode = document.createElement("h2");
         newNode.textContent = `Hello ${membershipData.userName},`;
